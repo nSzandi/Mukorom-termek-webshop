@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Toggle Button -->
+  <mat-icon class="toggle-icon" (click)="sidenav.toggle()">menu</mat-icon>
+
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav mode="side" style="width: 250px;">
+    <mat-nav-list class="sidenav-list">
+      <mat-list-item routerLink="/home" routerLinkActive="active-link">
+        <mat-icon>home</mat-icon> Home
+      </mat-list-item>
+
+      <mat-list-item (click)="showProducts = !showProducts">
+        <mat-icon>shopping_bag</mat-icon> Termékek
+      </mat-list-item>
+
+      @if (showProducts) {
+        <mat-accordion>
+          <mat-expansion-panel hideToggle expanded>
+            
+
+            <mat-nav-list>
+              <mat-list-item routerLink="/termekek/reszelo" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Reszelők
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/ecset" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Ecsetek
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/gel_lakk" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Gél lakkok
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/zsele" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Zselék
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/porcelan" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Porcelán
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/gep" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Gépek
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/borapolas" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Bőrápolás
+              </mat-list-item>
+              <mat-list-item routerLink="/termekek/kiegeszito" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Kiegészítők
+              </mat-list-item>
+              <!--<mat-list-item routerLink="/termekek" routerLinkActive="active-link">
+                <mat-icon>arrow_forward</mat-icon> Összes termék
+              </mat-list-item>-->
+            </mat-nav-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      }
+      <mat-list-item routerLink="/kosar" routerLinkActive="active-link">
+        <mat-icon>shopping_cart</mat-icon> Kosár
+      </mat-list-item>
+
+      <mat-list-item routerLink="/info" routerLinkActive="active-link">
+        <mat-icon>info</mat-icon> Információk
+      </mat-list-item>
+      <mat-list-item routerLink="/felhasznalo" routerLinkActive="active-link">
+        <mat-icon>person</mat-icon> Felhasználó
+      </mat-list-item>
+      <mat-list-item routerLink="/rendelesek" routerLinkActive="active-link">
+        <mat-icon>receipt</mat-icon> Rendelések
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>

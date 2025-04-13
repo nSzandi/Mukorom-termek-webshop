@@ -1,0 +1,64 @@
+/* General card styling */
+mat-card {
+  width: 300px;
+  height: 600px;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header styling */
+mat-card-header {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+mat-card-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Image styling */
+mat-card-image {
+  max-height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Content styling */
+mat-card-content {
+  padding: 16px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Actions styling */
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border-top: 1px solid #ddd;
+}
+
+mat-card-actions button {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* Footer styling */
+mat-card-footer {
+  background-color: #f9f9f9;
+  padding: 12px;
+  font-size: 14px;
+  text-align: right;
+  color: #777;
+}

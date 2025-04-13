@@ -1,0 +1,119 @@
+/* Bejelentkezési (tégla alakú) */
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+/* Bejelentkezési panel */
+.login-panel {
+  width: 600px;
+  height: 800px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Márka sáv */
+.brand-bar {
+  width: 100%;
+  height: 50px;
+  background-color: #f26b8ddc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+}
+
+.brand-name {
+  text-align: center;
+}
+
+/* Bejelentkezési tartalom */
+.login-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-content h2 {
+  text-align: left;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Bejelentkezési mezők */
+.login-content label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.login-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.login-content input:focus {
+  border-color: #ff66b2;
+  outline: none;
+}
+
+/* Bejelentkezés gomb */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f26b8ddc;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.login-button:hover {
+  background-color: #ff66b2;
+}
+
+/* Regisztrációs kérdés és váltó gomb */
+.question {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.question button {
+  background-color: transparent;
+  border: none;
+  color: #f26b8ddc;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Reszponzív design: kisebb képernyőkhöz */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 10px;
+  }
+  .login-panel {
+    width: 90%;
+    height: auto;
+  }
+}

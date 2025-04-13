@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+    background-image: url('assets/background.jpg');
+    background-size: cover; /* Make the image cover the entire page */
+    background-position: center; /* Center the image */
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+.app-container {
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    padding: 20px; /* Add some padding */
+}

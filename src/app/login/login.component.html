@@ -1,0 +1,46 @@
+<div class="login-panel">
+  <!-- Márka sáv a bejelentkezés felett -->
+  <div class="brand-bar">
+    <span class="brand-name">Műköröm webshop</span>
+  </div>
+
+  <!-- Bejelentkezés szöveg -->
+  <div class="login-content">
+    <h2>{{ 'Bejelentkezés' }}</h2>
+
+    <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" name="email" required>
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <mat-error>Érvényes email címet adj meg!</mat-error>
+        }
+      </mat-form-field>
+ 
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Jelszó</mat-label>
+        <input formControlName="password" matInput type="password" name="password" required>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <mat-error>A jelszó megadása kötelező!</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-raised-button [disabled]="!loginForm.valid" type="submit" class="login-button">
+        {{ 'Bejelentkezés' }}
+      </button>
+    </form>
+
+    @if (!loginForm.valid && loginForm.touched) {
+      <div class="error-message">
+        <p>Kérjük, töltsd ki helyesen az összes mezőt!</p>
+      </div>
+    }
+
+    <div class="question">
+      <p>Új felhasználó vagy? </p>
+      <button (click)="toggleLocation('/registration')">
+        {{ 'Regisztrálj itt' }}
+      </button>
+    </div>
+  </div>
+</div>

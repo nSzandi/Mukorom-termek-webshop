@@ -1,0 +1,17 @@
+<mat-card appearance="outlined">
+    <img mat-card-image src="/minta.jpg" alt="Termék kép">
+    <mat-card-header>
+        <mat-card-title>{{termekAdatok.nev}}</mat-card-title>
+        <mat-card-subtitle>{{termekAdatok.ar | forint}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{termekAdatok.leiras}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button color="primary" (click)="addToCart(termekAdatok)">Kosárba</button>
+        <button mat-button color="warn">Törlés</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <p>Mennyiség: {{termekAdatok.mennyiseg}}</p>
+    </mat-card-footer>
+</mat-card>

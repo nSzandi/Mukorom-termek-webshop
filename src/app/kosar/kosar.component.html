@@ -1,0 +1,24 @@
+<mat-card class="cart-card">
+    <h2>Kosár</h2>
+    <mat-divider></mat-divider>
+  
+    @for (kosarAdat of dummyKosarData; track $index) {
+        <div class="cart-item">
+            <div class="item-details">
+                <h3>{{ kosarAdat.termek.nev }}</h3>
+                <p>Mennyiség: {{ kosarAdat.mennyiseg }}</p>
+                <p>Ár: {{ (kosarAdat.termek.ar * kosarAdat.mennyiseg) | forint }}</p>
+            </div>
+            <button mat-flat-button color="warn" (click)="removeItem(kosarAdat.termek)" class="remove-button">Törlés</button>
+        </div>
+    }
+    <mat-divider></mat-divider>
+  
+    <div class="cart-summary">
+        <h3>Végösszeg:</h3>
+        <p>
+            {{totalPrice | forint}}
+        </p>
+        <button mat-raised-button color="primary" class="checkout-button">Fizetés</button>
+    </div>
+</mat-card>

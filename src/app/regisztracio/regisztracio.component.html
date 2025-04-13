@@ -1,0 +1,59 @@
+<div class="login-panel">
+    <div class="brand-bar">
+      <span class="brand-name">Műköröm webshop</span>
+    </div>
+  
+    <div class="login-content">
+      <h2>Regisztráció</h2>
+  
+      <form (ngSubmit)="onRegister()" [formGroup]="registForm">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Név</mat-label>
+          <input matInput formControlName="name" type="text" name="name">
+          @if (registForm.get('name')?.invalid && registForm.get('name')?.touched) {
+            <mat-error>A név megadása kötelező!</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" name="email">
+          @if (registForm.get('email')?.invalid && registForm.get('email')?.touched) {
+            <mat-error>Érvényes email címet adj meg!</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Jelszó</mat-label>
+          <input matInput formControlName="password" type="password" name="password">
+          @if (registForm.get('password')?.invalid && registForm.get('password')?.touched) {
+            <mat-error>A jelszó megadása kötelező!</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Jelszó megerősítése</mat-label>
+          <input matInput formControlName="confirmPassword" type="password" name="confirmPassword">
+          @if (registForm.get('confirmPassword')?.invalid && registForm.get('confirmPassword')?.touched) {
+            <mat-error>A jelszavaknak egyezniük kell!</mat-error>
+          }
+        </mat-form-field>
+        <br>
+        
+        <button mat-raised-button [disabled]="!registForm.valid" type="submit" class="login-button">Regisztráció</button>
+      </form>
+  
+      @if (!registForm.valid && registForm.touched) {
+        <div class="error-message">
+          <p>Kérjük, töltsd ki helyesen az összes mezőt!</p>
+        </div>
+      }
+
+      <div class="question">
+        <p>Van már fiókod?</p>
+        <button (click)="toggleLocation('/login')"> {{ 'Jelentkezz be itt' }}</button>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.termekek-container {
+    display: flex; /* Enable flexbox layout */
+    flex-wrap: wrap; /* Allow wrapping to the next row if necessary */
+    gap: 16px; /* Add spacing between items */
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items to the top */
+    padding: 32px; /* Add padding around the container */
+    max-width: 75vw; /* Limit the maximum width of the container */
+    max-height: 100vh; /* Set a maximum height for the container */
+    margin: 0 auto; /* Center the container horizontally on the page */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}

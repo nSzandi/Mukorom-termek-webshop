@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Remove Item</h2>
+
+<mat-dialog-content>
+  <p>Biztos benne, hogy törli a(z) <strong>{{termek.nev}}</strong> terméket a kosarából?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" (click)="closeDialog(false)">Mégsem</button>
+  <button mat-raised-button color="warn" (click)="closeDialog(true)">Biztos</button>
+</mat-dialog-actions>
