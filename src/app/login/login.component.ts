@@ -6,12 +6,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../service/auth.service';
+
+
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -24,9 +27,19 @@ export class LoginComponent {
   });
 
   router = inject(Router);
+  authService = inject(AuthService);
 
-  onLogin(): void {
-    console.log('Bejelentkezés próbálkozás:', this.loginForm.controls.email.value, this.loginForm.controls.password.value);
+
+  onLogin(): void {    
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+        console.log("adas")
+      },
+      error: (error) => {
+        console.error('Login failed', error);
+      }
+    })
   }
   
 

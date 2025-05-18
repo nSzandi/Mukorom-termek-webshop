@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms'; // ReactiveFormsModule importálása
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -27,15 +28,21 @@ export class RegisztracioComponent {
   });
 
   router = inject(Router)
+  authService = inject(AuthService);
+  
 
   // Regisztrációs logika
   onRegister(): void {
-    if (this.registForm.controls.password.value === this.registForm.controls.confirmPassword.value) {
-      console.log('Regisztráció sikeres:', this.registForm.controls.name.value, this.registForm.controls.email.value, this.registForm.controls.password.value);
-      // Itt történhet a regisztráció API hívása
-    } else {
-      console.log('A jelszavak nem egyeznek!');
-    }
+    console.log("ubzik vagytok mind")
+
+    this.authService.regist(this.registForm.value.email, this.registForm.value.password).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('Login failed', error);
+      }
+    })
   }
 
   // Vissza a bejelentkezéshez

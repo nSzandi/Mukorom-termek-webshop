@@ -4,10 +4,11 @@ import { termekAdatok } from './termekAdatok';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ForintPipe } from '../forint.pipe';
+import { TermekMennyisegPipe } from '../termek-mennyiseg.pipe';
 
 @Component({
   selector: 'app-termek',
-  imports: [MatCardModule, MatButtonModule, ForintPipe],
+  imports: [MatCardModule, MatButtonModule, ForintPipe, TermekMennyisegPipe],
   templateUrl: './termek.component.html',
   styleUrl: './termek.component.css'
 })

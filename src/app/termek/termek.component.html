@@ -1,7 +1,7 @@
 <mat-card appearance="outlined">
     <img mat-card-image src="/minta.jpg" alt="Termék kép">
     <mat-card-header>
-        <mat-card-title>{{termekAdatok.nev}}</mat-card-title>
+        <mat-card-title>{{termekAdatok.nev | termekAr }}</mat-card-title>
         <mat-card-subtitle>{{termekAdatok.ar | forint}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
