@@ -1,31 +1,51 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { termekAdatok } from '../termek/termekAdatok';
-import { TermekComponent } from '../termek/termek.component';
+import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { Termek } from '../termek/kategoria.type';
+import { CartService } from '../service/cart.service';
+import { TermekService } from '../service/termek.service';
+import { Termek, kategoria } from '../termek/kategoria.type';
+import { TermekComponent } from '../termek/termek.component';
 
 @Component({
   selector: 'app-termekek',
   imports: [TermekComponent],
   templateUrl: './termekek.component.html',
-  styleUrl: './termekek.component.css'
+  styleUrl: './termekek.component.css',
 })
 export class TermekekComponent implements OnInit {
-  osszesTermek = termekAdatok;
+  termekek: Termek[] = [];
 
-  private activatedRoute = inject(ActivatedRoute);
+  constructor(
+    private termekService: TermekService,
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
+    private auth: Auth
+  ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      const kategoria = params['kategoria'];
-      this.osszesTermek = termekAdatok.filter(termek => termek.kategoria === kategoria);
+    this.termekService.getAllTermekAndUpdateAllMapsWithId().then(() => {
+      console.log('done');
     });
-}
+    this.activatedRoute.params.subscribe((params) => {
+      const kategoria = params['kategoria'] as kategoria;
+      if (kategoria) {
+        this.termekService
+          .getTermekekByKategoria(kategoria)
+          .subscribe((termekek) => {
+            this.termekek = termekek[`osszes_${kategoria}`];
+          });
+      }
+    });
+  }
 
-addedToCart(termek: Termek) {
-  // Implement the logic to handle adding the product to the cart here
-  console.log(`Termék hozzáadva a kosárhoz: ${termek.nev}`);
-  // You can also update the cart count or perform any other actions as needed
-}
+  addedToCart(termek: Termek) {
+    const email = this.auth.currentUser?.email;
+    if (!email) {
+      console.error('User is not logged in');
+      return;
+    }
+    this.cartService.addToCart(termek, email).then(() => {
+      console.log('Termék hozzáadva a kosárhoz:', termek);
+    });
+  }
 }

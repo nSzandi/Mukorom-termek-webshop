@@ -1,5 +1,5 @@
 <div class="termekek-container">
-    @for (termek of osszesTermek; track $index) {
-        <app-termek (termekHozzadvaKosarhoz)="addedToCart($event)" [termekAdatok]="termek"></app-termek>
+    @for (termek of termekek; track $index) {
+    <app-termek (termekHozzadvaKosarhoz)="addedToCart($event)" [termekAdatok]="termek"></app-termek>
     }
 </div>

@@ -15,22 +15,22 @@
 
   <!-- Filtered Orders -->
   @for (rendeles of filteredRendelesek; track $index) {
-    <mat-card class="rendeles-card">
-      <mat-card-header>
-        <mat-card-title>Rendelés ID: {{ rendeles.id }}</mat-card-title>
-        <mat-card-subtitle>Dátum: {{ rendeles.datum | date: 'yyyy-MM-dd' }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p><strong>Felhasználó:</strong> {{ rendeles.felhasznalo.nev }}</p>
-        <p><strong>Email:</strong> {{ rendeles.felhasznalo.email }}</p>
-        <p><strong>Összeg:</strong> {{ rendeles.osszeg | forint }}</p>
-        <h4>Kosár tartalom:</h4>
-        <ul>
-          @for (item of rendeles.kosar_tartalom; track $index) {
-            <li>{{ item.termek.nev }} - {{ item.mennyiseg }} db</li>
-          }
-        </ul>
-      </mat-card-content>
-    </mat-card>
+  <mat-card class="rendeles-card">
+    <mat-card-header>
+      <mat-card-title>Rendelés ID: {{ rendeles.id }}</mat-card-title>
+      <mat-card-subtitle>Dátum: {{ rendeles.datum | date: 'yyyy-MM-dd' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Felhasználó:</strong> {{ rendeles.felhasznalo.name }}</p>
+      <p><strong>Email:</strong> {{ rendeles.felhasznalo.email }}</p>
+      <p><strong>Összeg:</strong> {{ rendeles.osszeg | forint }}</p>
+      <h4>Kosár tartalom:</h4>
+      <ul>
+        @for (item of rendeles.kosar_tartalom; track $index) {
+        <li>{{ item.termek.nev }} - {{ item.mennyiseg }} db</li>
+        }
+      </ul>
+    </mat-card-content>
+  </mat-card>
   }
 </div>

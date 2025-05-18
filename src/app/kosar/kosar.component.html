@@ -1,19 +1,26 @@
 <mat-card class="cart-card">
     <h2>Kosár</h2>
     <mat-divider></mat-divider>
-  
-    @for (kosarAdat of dummyKosarData; track $index) {
+
+    <form [formGroup]="cartForm">
+        @for (kosarAdat of kosarData; track $index) {
         <div class="cart-item">
             <div class="item-details">
-                <h3>{{ kosarAdat.termek.nev }}</h3>
-                <p>Mennyiség: {{ kosarAdat.mennyiseg }}</p>
-                <p>Ár: {{ (kosarAdat.termek.ar * kosarAdat.mennyiseg) | forint }}</p>
+                <h3>{{ kosarAdat.nev }}</h3>
+                <mat-form-field appearance="fill" class="mennyiseg-input">
+                    <mat-label>Mennyiség</mat-label>
+                    <input (change)="onQuantityChange(kosarAdat)" matInput type="number" min="0"
+                        [formControlName]="'mennyiseg_' + kosarAdat.id">
+                </mat-form-field>
+                <p>Ár: {{ (kosarAdat.ar * (cartForm?.get('mennyiseg_' + kosarAdat.id)?.value || kosarAdat.mennyiseg)) |
+                    forint }}</p>
             </div>
-            <button mat-flat-button color="warn" (click)="removeItem(kosarAdat.termek)" class="remove-button">Törlés</button>
+            <button mat-flat-button color="warn" (click)="removeItem(kosarAdat)" class="remove-button">Törlés</button>
         </div>
-    }
+        }
+    </form>
     <mat-divider></mat-divider>
-  
+
     <div class="cart-summary">
         <h3>Végösszeg:</h3>
         <p>

@@ -1,23 +1,32 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, Validators } from '@angular/forms'; // FormsModule importálása
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms'; // FormsModule importálása
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms'; // ReactiveFormsModule importálása
 import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule, CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, ],  // FormsModule szükséges a kétirányú adatbindinghez
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ], // FormsModule szükséges a kétirányú adatbindinghez
   templateUrl: './regisztracio.component.html',
-  styleUrls: ['./regisztracio.component.css']
+  styleUrls: ['./regisztracio.component.css'],
 })
 export class RegisztracioComponent {
-  
   private fb = inject(FormBuilder);
 
   registForm = this.fb.group({
@@ -25,24 +34,30 @@ export class RegisztracioComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     confirmPassword: ['', [Validators.required]],
+    cim: ['', [Validators.required]],
+    telefonSzam: ['', [Validators.required]],
   });
 
-  router = inject(Router)
+  router = inject(Router);
   authService = inject(AuthService);
-  
 
   // Regisztrációs logika
   onRegister(): void {
-    console.log("ubzik vagytok mind")
-
-    this.authService.regist(this.registForm.value.email, this.registForm.value.password).subscribe({
-      next: () => {
+    this.authService
+      .regist(
+        this.registForm.value.email,
+        this.registForm.value.password,
+        this.registForm.value
+      )
+      .then(() => {
+        // Regisztráció sikeres
+        console.log('Regisztráció sikeres');
         this.router.navigate(['/home']);
-      },
-      error: (error) => {
-        console.error('Login failed', error);
-      }
-    })
+      })
+      .catch((error) => {
+        // Regisztráció sikertelen
+        console.error('Regisztráció sikertelen', error);
+      });
   }
 
   // Vissza a bejelentkezéshez
